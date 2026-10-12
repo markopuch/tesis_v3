@@ -1,10 +1,19 @@
+# Nombre completo del nodo: debe coincidir con namespace y name del launch.
 /camera/brio:
   ros__parameters:
     camera_name: "brio"
+    # Dispositivo de captura de esta cámara; puede cambiar entre equipos.
     video_device: "/dev/video4"
+    # Formato de conversión utilizado por el controlador usb_cam.
     pixel_format: "mjpeg2rgb"
+    # Resolución de captura. El VideoWriter de video_ros_record.py conserva
+    # 1920x1080 del código original y debe coincidir con estos valores.
+    # Los polígonos de detección también usan coordenadas fijas en píxeles.
     image_width: 1280
     image_height: 720
+    # Frecuencia del controlador; los scripts procesan a 10 Hz.
     framerate: 30.0
+    # mmap permite al controlador acceder a los buffers de video del kernel.
     io_method: "mmap"
+    # Identificador del marco de cámara en las cabeceras de los mensajes ROS.
     frame_id: "brio_camera_optical_frame"

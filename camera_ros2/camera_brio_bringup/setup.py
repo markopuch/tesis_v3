@@ -4,10 +4,13 @@ from setuptools import find_packages, setup
 
 package_name = 'camera_brio_bringup'
 
+# Metadatos e instrucciones de instalación del paquete Python para colcon.
 setup(
     name=package_name,
     version='0.0.0',
     packages=find_packages(exclude=['test']),
+    # Instalar el marcador de ament, el manifiesto, los launch y los YAML
+    # para que ROS 2 pueda encontrarlos en el directorio share del paquete.
     data_files=[
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
@@ -26,8 +29,13 @@ setup(
             'pytest',
         ],
     },
+    # Cada entrada expone main como ejecutable para:
+    # ros2 run camera_brio_bringup <nombre_del_script>
     entry_points={
         'console_scripts': [
+            'bottle_detection = camera_brio_bringup.bottle_detection:main',
+            'square = camera_brio_bringup.square:main',
+            'video_ros_record = camera_brio_bringup.video_ros_record:main',
         ],
     },
 )
